@@ -1,8 +1,22 @@
 import React, { Component } from "react";
 import Newsitem from "./Newsitem";
 import Spinner from "./Spinner";
+import PropTypes from 'prop-types'
+
 
 export class News extends Component {
+  static defaultProps = {
+
+    pageSize : 6,
+    category : 'general',
+    country : 'in',
+
+  }
+  static propTypes = {
+    pageSize : PropTypes.number,
+    category : PropTypes.string,
+    country : PropTypes.string,
+  }
   constructor() {
     super();
     this.state = {
@@ -13,7 +27,7 @@ export class News extends Component {
   }
   async componentDidMount() {
     let url =
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=9dcd9f3301e846388b89193203711165&pageSize=${this.props.pageSize}`;
+      `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=9dcd9f3301e846388b89193203711165&pageSize=${this.props.pageSize}`;
       this.setState({loading : true});
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -26,7 +40,7 @@ export class News extends Component {
   handlePrevClick = async () => {
     if (this.state.page - 1 > Math.ceil(this.state.totalResults / this.props.pageSize)) {
     } else {
-      let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9dcd9f3301e846388b89193203711165&page=${
+      let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=9dcd9f3301e846388b89193203711165&page=${
         this.state.page - 1
       }&pageSize=${this.props.pageSize}`;
       this.setState({loading : true});
@@ -42,7 +56,7 @@ export class News extends Component {
   handleNextClick = async () => {
     if (this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)) {
     } else {
-      let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9dcd9f3301e846388b89193203711165&page=${
+      let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=9dcd9f3301e846388b89193203711165&page=${
         this.state.page + 1
       }&pageSize=${this.props.pageSize}`;
       this.setState({loading : true});
@@ -59,7 +73,7 @@ export class News extends Component {
     return (
       <>
         <div className="container my-3">
-          <h3 className="text-center">News Hub - Top Headlines</h3>
+          <h3 className="text-center my-3">News Hub - Top Headlines</h3>
           <div className="text-center">
             {this.state.loading && <Spinner/>}
           </div>
