@@ -2,10 +2,14 @@ import React, { Component } from "react";
 
 export class Newsitem extends Component {
   render() {
-    let { title, description, imageUrl, newsUrl } = this.props;
+    let { title, description, imageUrl, newsUrl, author, date, time, name } =
+      this.props;
     return (
       <div className="my-3">
-        <div className="card" >
+        <div className="card">
+          <div className="card-header">
+            By Source : {!name ? "Unknown" : name}
+          </div>
           <img
             src={imageUrl}
             className="card-img-top"
@@ -22,6 +26,10 @@ export class Newsitem extends Component {
             >
               Read More
             </a>
+          </div>
+          <div className="card-footer text-body-secondary">
+            By Author : {!author ? "Unknown" : author} <br />
+            Date - {date} <span> and </span>Time - {time}
           </div>
         </div>
       </div>
