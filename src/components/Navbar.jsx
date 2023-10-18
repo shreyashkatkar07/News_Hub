@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import favicon from "../assets/favicon.png";
 
 export class Navbar extends Component {
   render() {
@@ -7,8 +8,9 @@ export class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-lg bg-body-secondary">
           <div className="container-fluid">
-            <Link className="navbar-brand" to="#">
-              News Hub
+            <img src={favicon} alt="" />
+            <Link className="navbar-brand mx-2" to="#">
+              <h3 className="my-2 ">News Hub</h3>
             </Link>
             <button
               className="navbar-toggler"
