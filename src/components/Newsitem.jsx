@@ -5,7 +5,7 @@ export class Newsitem extends Component {
     let { title, description, imageUrl, newsUrl, author, date, time, name } =
       this.props;
     return (
-      <div className="my-3">
+      <div className="my-3"  style={{ maxHeight: "30rem" }}>
         <div className="card" style={{ height: "30rem" }}>
           <div className="card-header">
             By Source : {!name ? "Unknown" : name}
@@ -32,8 +32,8 @@ export class Newsitem extends Component {
               </a>
             </div>
           </div>
-          <div className="card-footer text-body-secondary">
-            By Author : {!author ? "Unknown" : author} <br />
+          <div className="card-footer text-body-secondary ">
+            By Author : {!author ? "Unknown" : author}{author.length > 25 ? "..." : ""} <br />
             Date - {date} <span> and </span>Time - {time}
           </div>
         </div>
